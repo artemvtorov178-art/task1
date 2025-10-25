@@ -53,7 +53,36 @@ def send_heh(message):
 @bot.message_handler(commands=['help'])
 def on_info(message):   
     bot.reply_to(message, text_messages['wrong_chat'])
-        
+    
+@bot.message_handler(commands=['mem'])
+def send_mem(message):
+    with open('images/mem.jpeg', 'rb') as f:  
+        bot.send_photo(message.chat.id, f)
+
+
+@bot.message_handler(commands=['mem2'])
+def send_mem2(message):
+    with open('images/mem2.jpg', 'rb') as f:  
+        bot.send_photo(message.chat.id, f)
+
+@bot.message_handler(commands=['mem3'])
+def send_mem3(message):
+    with open('images/mem3.jpeg', 'rb') as f:  
+        bot.send_photo(message.chat.id, f)
+
+@bot.message_handler(commands=['random_mem'])
+def send_random_mem(message):
+    img_name = random.choice(os.listdir('images'))
+    with open(f'images/{img_name}', 'rb') as f:  
+        bot.send_photo(message.chat.id, f)     
+
+@bot.message_handler(commands=['can_be_thrown_into_the_trash'])
+def send_hello(message):   
+    bot.reply_to(message, ['пищевые остатки, бумага, пластик, одежда, обувь'])
+
+@bot.message_handler(commands=['it_is_possible_to_recycle_it'])
+def send_hello(message):   
+    bot.reply_to(message, ['бумагу, картон, газеты, стекло, бутылки, банки, металл, пластик, электронику, одежду,батарейки'])       
         
 # Запускаем бота
 bot.polling()
